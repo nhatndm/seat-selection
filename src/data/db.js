@@ -24,23 +24,26 @@ export const seats = () => {
   const MaxRangeNumber = 5;
 
   const HorizontalSeats = verIndex => {
-    return Array.from(Array(MaxSeats), (horItem, horIndex) => {
-      if (horIndex === 0) {
+    return {
+      id: random.uuid(),
+      data: Array.from(Array(MaxSeats), (horItem, horIndex) => {
+        if (horIndex === 0) {
+          return objectSeat(
+            random.uuid(),
+            Alphas[verIndex],
+            ContentType.LABEL,
+            null
+          );
+        }
+
         return objectSeat(
           random.uuid(),
-          Alphas[verIndex],
-          ContentType.LABEL,
-          null
+          horIndex,
+          ContentType.SEAT,
+          SeatTypeArr[random.number(MaxRangeNumber)]
         );
-      }
-
-      return objectSeat(
-        random.uuid(),
-        null,
-        ContentType.SEAT,
-        SeatTypeArr[random.number(MaxRangeNumber)]
-      );
-    });
+      })
+    };
   };
 
   const VerticalSeats = Array.from(
