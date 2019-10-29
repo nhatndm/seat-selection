@@ -1,3 +1,24 @@
+@import "~bootstrap/scss/bootstrap";
+
 body {
   margin: 0;
+  background-color: var(--app--very-dark-grayish-blue);
+}
+
+.app {
+  height: 100vh;
+  color: var(--app--white);
+
+  &.container {
+    // padding-right: 100px;
+    // padding-left: 100px;
+  }
+}
+
+:root {
+  --app--very-dark-grayish-blue: #353c44;
+  --app--dark-grayish-blue: #71767c;
+  --app--white: #ffffff;
+  --app--dark-blue: #0061b0;
+  --app--lime-green: #00724e;
 }

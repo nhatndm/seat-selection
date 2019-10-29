@@ -1,18 +1,14 @@
 import React, { Component } from "react";
 import "./index.scss";
-import { seats } from "../../data";
+import { SeatMap } from "../../Presentations/SeatMap";
 
 export default class App extends Component {
-  state = {
-    data: []
-  };
-
-  componentDidMount() {
-    const data = seats();
-    this.setState({ data: data });
-  }
-
   render() {
-    return <div> this is seat selection</div>;
+    const { dataSource } = this.props;
+    return (
+      <div className="app container">
+        <SeatMap dataSource={dataSource} />
+      </div>
+    );
   }
 }
