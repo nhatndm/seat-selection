@@ -1,0 +1,45 @@
+@mixin borderColor($color) {
+  border: 1px solid var($color);
+}
+
+.seat {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  height: 40px;
+  border-radius: 25px;
+  margin: 10px 5px 10px 5px;
+
+  &.disabled {
+    background-color: var(--app--very-dark-grayish-blue);
+  }
+
+  &.standard {
+    @include borderColor(--app--white);
+  }
+
+  &.vip {
+    @include borderColor(--app--lime-green);
+  }
+
+  &.deluxe {
+    @include borderColor(--app--dark-blue);
+  }
+
+  &.selected {
+    background-color: var(--app--dark-grayish-blue);
+    color: var(--app--very-dark-grayish-blue);
+    @include borderColor(--app--dark-grayish-blue);
+  }
+
+  &.selecting {
+    background-color: var(--app--white);
+    color: var(--app--very-dark-grayish-blue);
+    @include borderColor(--app--white);
+  }
+
+  &.label {
+    color: var(--app--white);
+  }
+}
