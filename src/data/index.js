@@ -1,2 +1,2 @@
 export { ContentType, SeatType } from "./constant";
-export { seats } from "./db";
+export { seats, fakeDB } from "./db";

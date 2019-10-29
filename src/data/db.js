@@ -55,3 +55,8 @@ export const seats = () => {
 
   return VerticalSeats;
 };
+
+export const fakeDB = {
+  movie: "Spider-man: Far From Home",
+  seat_map: seats()
+};
