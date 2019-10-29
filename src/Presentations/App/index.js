@@ -1,13 +1,17 @@
 import React, { Component } from "react";
 import "./index.scss";
 import { SeatMap } from "../../Presentations/SeatMap";
+import Header from "../Layout/Header";
+import Footer from "../Layout/Footer";
 
 export default class App extends Component {
   render() {
-    const { dataSource } = this.props;
+    const { dataSource, movie } = this.props;
     return (
       <div className="app container">
+        <Header movie={movie} />
         <SeatMap dataSource={dataSource} />
+        <Footer />
       </div>
     );
   }

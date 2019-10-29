@@ -24,7 +24,11 @@ const VerticalSeat = ({ seats }) => {
 };
 
 export const SeatMap = ({ dataSource }) => {
-  return dataSource.map(item => {
-    return <VerticalSeat key={item.id} seats={item.data} />;
-  });
+  return (
+    <div className="seat-map">
+      {dataSource.map(item => {
+        return <VerticalSeat key={item.id} seats={item.data} />;
+      })}
+    </div>
+  );
 };

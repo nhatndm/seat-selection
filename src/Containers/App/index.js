@@ -23,8 +23,8 @@ export default class AppContainer extends Component {
 
   render() {
     const {
-      data: { seat_map }
+      data: { seat_map, movie }
     } = this.state;
-    return <AppPresenter dataSource={seat_map} />;
+    return <AppPresenter dataSource={seat_map} movie={movie} />;
   }
 }
