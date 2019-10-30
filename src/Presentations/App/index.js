@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./index.scss";
-import { SeatMap } from "../../Presentations/SeatMap";
+import { SeatMap } from "../../Components/SeatMap";
 import Header from "../Layout/Header";
 import Footer from "../Layout/Footer";
 

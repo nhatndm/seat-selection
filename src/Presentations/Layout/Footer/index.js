@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Seat } from "../../../Components/Seat";
+import Seat from "../../../Components/Seat";
 import { SeatType } from "../../../data";
 import "./index.scss";
 
