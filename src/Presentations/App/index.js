@@ -6,12 +6,12 @@ import Footer from "../Layout/Footer";
 
 export default class App extends Component {
   render() {
-    const { dataSource, movie } = this.props;
+    const { dataSource, movie, price } = this.props;
     return (
       <div className="app container">
         <Header movie={movie} />
         <SeatMap dataSource={dataSource} />
-        <Footer />
+        <Footer price={price} />
       </div>
     );
   }

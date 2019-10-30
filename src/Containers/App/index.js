@@ -27,6 +27,8 @@ export default class AppContainer extends Component {
     this.setState(state => {
       let newBackupArray;
       let newSeatMap;
+      let price;
+
       newSeatMap = state.seat_map.map((item, verticalIndex) => {
         if (verticalIndex === verticalSeatIndex) {
           const seat = item.data[seatSelectedIndex];
@@ -39,11 +41,25 @@ export default class AppContainer extends Component {
 
               return backUpItem.id !== seat.id;
             });
+
+            price = newBackupArray.reduce(
+              (totalPrice, currentItem) => totalPrice + currentItem.price,
+              0
+            );
           } else {
-            if (state.backup_array.length < 6) {
+            if (
+              state.backup_array.length < 6 &&
+              seat.seat_type !== SeatType.SELECTING
+            ) {
               newBackupArray = state.backup_array.concat(
                 Object.assign({}, seat)
               );
+
+              price = newBackupArray.reduce(
+                (totalPrice, currentItem) => totalPrice + currentItem.price,
+                0
+              );
+
               seat.seat_type = SeatType.SELECTING;
             }
           }
@@ -55,20 +71,21 @@ export default class AppContainer extends Component {
       return {
         movie: state.movie,
         seat_map: newSeatMap,
-        backup_array: newBackupArray ? newBackupArray : state.backup_array
+        backup_array: newBackupArray ? newBackupArray : state.backup_array,
+        price: price ? price : state.price
       };
     });
   };
 
   render() {
-    const { seat_map, movie } = this.state;
+    const { seat_map, movie, price } = this.state;
     return (
       <SeatMapProvider
         value={{
           handleSelectSeat: this.handleSelectedSeat
         }}
       >
-        <AppPresenter dataSource={seat_map} movie={movie} />;
+        <AppPresenter dataSource={seat_map} movie={movie} price={price} />;
       </SeatMapProvider>
     );
   }

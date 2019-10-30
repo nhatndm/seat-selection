@@ -5,6 +5,7 @@ import "./index.scss";
 
 export default class Footer extends Component {
   render() {
+    const { price } = this.props;
     return (
       <div className="footer">
         <div className="seat-detail-wrapper">
@@ -28,6 +29,9 @@ export default class Footer extends Component {
             <Seat seat_type={SeatType.DELUXE} />
             <p className="price-text">Deluxe - 110.000</p>
           </div>
+        </div>
+        <div className="seat-total-price">
+          <p>Price: {price.toLocaleString()} VND</p>
         </div>
       </div>
     );
