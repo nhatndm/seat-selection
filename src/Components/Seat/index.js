@@ -10,19 +10,21 @@ export default class Seat extends Component {
   checkSeatType = (seat_type, content, handleClick) => {
     switch (seat_type) {
       case SeatType.DELUXE:
-        return <div className="seat deluxe" onClick={handleClick} />;
+        return <div className="seat deluxe can-hover" onClick={handleClick} />;
       case SeatType.STANDARD:
-        return <div className="seat standard" onClick={handleClick} />;
+        return (
+          <div className="seat standard can-hover" onClick={handleClick} />
+        );
       case SeatType.SELECTED:
         return <div className="seat selected" />;
       case SeatType.SELECTING:
         return (
-          <div className="seat selecting" onClick={handleClick}>
+          <div className="seat selecting can-hover" onClick={handleClick}>
             {content}
           </div>
         );
       case SeatType.VIP:
-        return <div className="seat vip" onClick={handleClick} />;
+        return <div className="seat vip can-hover" onClick={handleClick} />;
       default:
         return <div className="seat disabled" />;
     }

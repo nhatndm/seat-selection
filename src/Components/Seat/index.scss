@@ -39,6 +39,10 @@
     @include borderColor(--app--white);
   }
 
+  &.can-hover:hover {
+    cursor: pointer;
+  }
+
   &.label {
     color: var(--app--white);
   }
