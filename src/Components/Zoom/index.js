@@ -11,7 +11,9 @@ export default class Zoom extends Component {
     this.state = {
       zoom: 1,
       PosX: 0,
-      PosY: 0
+      PosY: 0,
+      showZoomIn: true,
+      showZoomOut: true
     };
 
     this.handleZoomIn = this.handleZoomIn.bind(this);
@@ -20,9 +22,17 @@ export default class Zoom extends Component {
 
   handleZoomIn() {
     this.setState(state => {
+      if (this.state.zoom === 1.75) {
+        return {
+          zoom: state.zoom + 0.25,
+          showZoomIn: false
+        };
+      }
+
       if (this.state.zoom >= 1 && this.state.zoom < 2) {
         return {
-          zoom: state.zoom + 0.25
+          zoom: state.zoom + 0.25,
+          showZoomOut: true
         };
       }
     });
@@ -30,9 +40,17 @@ export default class Zoom extends Component {
 
   handleZoomOut() {
     this.setState(state => {
+      if (this.state.zoom === 1.25) {
+        return {
+          zoom: state.zoom - 0.25,
+          showZoomOut: false
+        };
+      }
+
       if (this.state.zoom > 1) {
         return {
-          zoom: state.zoom - 0.25
+          zoom: state.zoom - 0.25,
+          showZoomIn: true
         };
       }
     });
@@ -40,7 +58,7 @@ export default class Zoom extends Component {
 
   render() {
     const { children } = this.props;
-    const { zoom, PosX, PosY } = this.state;
+    const { zoom, PosX, PosY, showZoomIn, showZoomOut } = this.state;
     return (
       <div className="zoom">
         <div className="tools">
@@ -48,11 +66,13 @@ export default class Zoom extends Component {
             color="#0061b0"
             handleClick={this.handleZoomIn}
             icon={<PlusIcon className="icon-16 fill-white" />}
+            show={showZoomIn}
           />
           <Button
             color="#00724e"
             handleClick={this.handleZoomOut}
             icon={<MinusIcon className="icon-16 fill-white" />}
+            show={showZoomOut}
           />
         </div>
 
