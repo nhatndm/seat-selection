@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { fakeDB, SeatType } from "../../data";
 import AppPresenter from "../../Presentations/App";
 import { SeatMapProvider } from "../../Context";
+import Zoom from "../../Components/Zoom";
 
 export default class AppContainer extends Component {
   constructor(props) {
@@ -85,7 +86,9 @@ export default class AppContainer extends Component {
           handleSelectSeat: this.handleSelectedSeat
         }}
       >
-        <AppPresenter dataSource={seat_map} movie={movie} price={price} />;
+        <Zoom>
+          <AppPresenter dataSource={seat_map} movie={movie} price={price} />
+        </Zoom>
       </SeatMapProvider>
     );
   }

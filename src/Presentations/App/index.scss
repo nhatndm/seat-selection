@@ -22,3 +22,12 @@ body {
   --app--dark-blue: #0061b0;
   --app--lime-green: #00724e;
 }
+
+.icon-16 {
+  width: 16px;
+  height: 16px;
+
+  &.fill-white {
+    fill: var(--app--white);
+  }
+}
