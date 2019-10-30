@@ -11,7 +11,9 @@ export default class AppContainer extends Component {
       movie: "",
       seat_map: [],
       backup_array: [],
-      price: 0
+      price: 0,
+      showAlert: false,
+      alertMessage: ""
     };
     this.handleSelectedSeat = this.handleSelectedSeat.bind(this);
   }
@@ -29,6 +31,8 @@ export default class AppContainer extends Component {
       let newBackupArray;
       let newSeatMap;
       let price;
+      let showAlert;
+      let alertMessage;
 
       newSeatMap = state.seat_map.map((item, verticalIndex) => {
         if (verticalIndex === verticalSeatIndex) {
@@ -47,6 +51,9 @@ export default class AppContainer extends Component {
               (totalPrice, currentItem) => totalPrice + currentItem.price,
               0
             );
+
+            showAlert = false;
+            alertMessage = "";
           } else {
             if (
               state.backup_array.length < 6 &&
@@ -62,6 +69,14 @@ export default class AppContainer extends Component {
               );
 
               seat.seat_type = SeatType.SELECTING;
+              showAlert = false;
+              alertMessage = "";
+            }
+
+            if (state.backup_array.length === 6) {
+              showAlert = true;
+              alertMessage =
+                "Sorry !!! The seat selected is already reached the limit";
             }
           }
         }
@@ -73,13 +88,15 @@ export default class AppContainer extends Component {
         movie: state.movie,
         seat_map: newSeatMap,
         backup_array: newBackupArray ? newBackupArray : state.backup_array,
-        price: price ? price : state.price
+        price: price ? price : state.price,
+        showAlert: showAlert,
+        alertMessage: alertMessage
       };
     });
   };
 
   render() {
-    const { seat_map, movie, price } = this.state;
+    const { seat_map, movie, price, showAlert, alertMessage } = this.state;
     return (
       <SeatMapProvider
         value={{
@@ -87,7 +104,13 @@ export default class AppContainer extends Component {
         }}
       >
         <Zoom>
-          <AppPresenter dataSource={seat_map} movie={movie} price={price} />
+          <AppPresenter
+            dataSource={seat_map}
+            movie={movie}
+            price={price}
+            showAlert={showAlert}
+            alertMessage={alertMessage}
+          />
         </Zoom>
       </SeatMapProvider>
     );
